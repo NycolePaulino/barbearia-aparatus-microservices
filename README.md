@@ -1,0 +1,96 @@
+# 💈 Barbearia Aparatus - Arquitetura de Microsserviços
+
+![Java](https://img.shields.io/badge/Java-17-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
+![Spring Cloud](https://img.shields.io/badge/Spring_Cloud-2023-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+
+## 📖 Sobre o Projeto
+
+Este projeto consiste na **refatoração completa** de um sistema monolítico de gestão de barbearia para uma **Arquitetura de Microsserviços** moderna, distribuída e escalável.
+
+O objetivo foi desacoplar as regras de negócio em serviços independentes, permitindo maior facilidade de manutenção, deploy isolado e escalabilidade horizontal. O sistema permite que clientes visualizem barbearias, escolham serviços, agendem horários e realizem pagamentos online de forma segura.
+
+---
+
+## 👨‍💻 Dados do Desenvolvedor
+
+| Nome | RA / Matrícula | Curso |
+| :--- | :--- | :--- |
+| **[SEU NOME AQUI]** | **[SEU RA AQUI]** | **[SEU CURSO AQUI]** |
+
+---
+
+## 🏗️ Arquitetura da Solução
+
+O backend foi dividido em domínios de negócio específicos, orquestrados por um API Gateway e um Service Discovery.
+
+### Mapa dos Serviços
+
+| Serviço | Porta Docker | Responsabilidade |
+| :--- | :--- | :--- |
+| **Discovery Server** (Eureka) | `8761` | Service Registry (Lista telefônica dos serviços). |
+| **API Gateway** | `8080` | Ponto único de entrada, Roteamento e Load Balancer. |
+| **Auth Service** | `8081` | Autenticação OAuth2 (Google) e Gestão de Usuários. |
+| **Agendamento Service** | `8082` | Catálogo de Barbearias, Serviços e Reservas. |
+| **Pagamento Service** | `8083` | Integração financeira com Stripe. |
+| **MongoDB** | `27017` | Banco de dados NoSQL (Database per Service). |
+
+### Fluxo de Execução
+1. O **Frontend** envia requisições apenas para o **API Gateway (8080)**.
+2. O **Gateway** consulta o **Eureka** para localizar a instância saudável do microsserviço desejado.
+3. A requisição é roteada para o serviço (ex: `agendamento-service`).
+4. Se necessário, o serviço valida o Token JWT através de chaves simétricas compartilhadas.
+
+---
+
+## 🚀 Funcionalidades Principais
+
+* **Autenticação Social:** Login seguro utilizando Google OAuth2.
+* **Catálogo Dinâmico:** Listagem de barbearias e serviços com imagens.
+* **Database Seeding:** O sistema popula automaticamente o banco de dados com dados fictícios na primeira execução.
+* **Agendamento:** Seleção de data e hora com verificação de disponibilidade em tempo real.
+* **Pagamentos Online:** Geração de sessão de checkout real via **Stripe API**.
+* **Meus Agendamentos:** Visualização de histórico e cancelamento de reservas.
+* **Containerização:** Todo o backend roda em containers Docker orquestrados via Docker Compose.
+
+---
+
+## 🛠️ Stack Tecnológica
+
+### Backend (Microsserviços)
+* **Linguagem:** Java 17
+* **Framework:** Spring Boot 3.2.3
+* **Ecossistema Spring Cloud:**
+    * *Gateway* (Roteamento)
+    * *Netflix Eureka* (Discovery)
+    * *Spring Security* (OAuth2 & Resource Server)
+* **Banco de Dados:** MongoDB (NoSQL)
+* **Build Tool:** Maven
+* **Docker:** Google Jib (Plugin para criação de imagens OCI sem Dockerfile)
+
+### Frontend
+* **Framework:** Next.js 14 (React)
+* **Linguagem:** TypeScript
+* **Estilização:** Tailwind CSS & Shadcn/ui
+* **HTTP Client:** Axios
+
+---
+
+## ⚙️ Guia de Instalação e Execução
+
+Siga os passos abaixo para rodar o projeto localmente.
+
+### Pré-requisitos
+* [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado e rodando.
+* [Node.js](https://nodejs.org/) (v18 ou superior).
+* **Maven** e **JDK 17** instalados e configurados no PATH.
+
+### Passo 1: Executar o Backend (Docker)
+
+1. Abra o terminal na pasta raiz do backend: `/barbearia-microservices`.
+2. Compile o projeto e gere as imagens Docker automaticamente usando o Jib:
+   ```bash
+   mvn clean compile jib:dockerBuild
