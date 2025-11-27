@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --background: 240 10% 99%;
+    --foreground: 210 29% 16%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 29% 16%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 29% 16%;
+    --primary: 160 84% 39%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 13% 91%;
+    --secondary-foreground: 210 29% 16%;
+    --muted: 212 15% 42%;
+    --muted-foreground: 212 15% 42%;
+    --accent: 240 10% 99%;
+    --accent-foreground: 210 29% 16%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 134 61% 41%; 
+    --success-foreground: 0 0% 100%;
+    --danger: 354 70% 54%; 
+    --danger-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 0 0% 100%;
+    --ring: 160 84% 39%;
+    --radius: 0.5rem;
+    --surface-light: 0 0% 100%;
+    --text-primary-light: 210 29% 16%;
+    --text-secondary-light: 212 15% 42%;
+}
+
+.dark {
+    --background: 210 29% 16%;
+    --foreground: 240 10% 99%;
+    --card: 210 22% 21%;
+    --card-foreground: 240 10% 99%;
+    --popover: 210 22% 21%;
+    --popover-foreground: 240 10% 99%;
+    --primary: 160 84% 39%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 215 16% 32%;
+    --secondary-foreground: 240 10% 99%;
+    --muted: 213 14% 65%;
+    --muted-foreground: 213 14% 65%;
+    --accent: 210 22% 21%;
+    --accent-foreground: 240 10% 99%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 134 61% 41%;
+    --success-foreground: 0 0% 100%;
+    --danger: 354 70% 54%;
+    --danger-foreground: 0 0% 100%;
+
+    --border: 215 16% 32%;
+    --input: 210 22% 21%;
+    --ring: 160 84% 39%;
+    --radius: 0.5rem;
+    --surface-dark: 210 22% 21%;
+    --text-primary-dark: 240 10% 99%;
+    --text-secondary-dark: 213 14% 65%;
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground font-body antialiased;
+    }
+}
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
