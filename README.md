@@ -19,11 +19,9 @@ O objetivo foi desacoplar as regras de negócio em serviços independentes, perm
 
 | Nome | RA / Matrícula | Curso |
 | :--- | :--- | :--- |
-| **Nycole Paulino Santos** | **2023.1.08.044** | **Bacharel em Ciencia da Computação** |
-| **Maria Luiza Alves Berlarmino** | **2023.1.08.015** | **Bacharel em Ciencia da Computação** |
-| **Maria Luiza Alves Berlarmino** | **2023.1.08.015** | **Bacharel em Ciencia da Computação** |
-| **Pedro Almeida** | **2023.1.08.015** | **Bacharel em Ciencia da Computação** |
-
+| **Nycole Paulino Santos** | 2023.1.08.044 | Bacharel em Ciência da Computação |
+| **Maria Luiza Alves Belarmino** | 2023.1.08.015 | Bacharel em Ciência da Computação |
+| **Pedro Almeida** | 2022.1.08.045 | Bacharel em Ciência da Computação |
 
 ---
 
@@ -65,21 +63,21 @@ O backend foi dividido em domínios de negócio específicos, orquestrados por u
 ## 🛠️ Stack Tecnológica
 
 ### Backend (Microsserviços)
-* **Linguagem:** Java 17
-* **Framework:** Spring Boot 3.2.3
+* **Linguagem:** Java 17  
+* **Framework:** Spring Boot 3.2.3  
 * **Ecossistema Spring Cloud:**
-    * *Gateway* (Roteamento)
-    * *Netflix Eureka* (Discovery)
-    * *Spring Security* (OAuth2 & Resource Server)
-* **Banco de Dados:** MongoDB (NoSQL)
-* **Build Tool:** Maven
+  * Gateway  
+  * Netflix Eureka  
+  * Spring Security (OAuth2 & Resource Server)
+* **Banco de Dados:** MongoDB (NoSQL)  
+* **Build Tool:** Maven  
 * **Docker:** Google Jib (Plugin para criação de imagens OCI sem Dockerfile)
 
 ### Frontend
-* **Framework:** Next.js 14 (React)
-* **Linguagem:** TypeScript
-* **Estilização:** Tailwind CSS & Shadcn/ui
-* **HTTP Client:** Axios
+* **Framework:** Next.js 14  
+* **Linguagem:** TypeScript  
+* **Estilização:** Tailwind CSS & Shadcn/ui  
+* **HTTP Client:** Axios  
 
 ---
 
@@ -88,13 +86,84 @@ O backend foi dividido em domínios de negócio específicos, orquestrados por u
 Siga os passos abaixo para rodar o projeto localmente.
 
 ### Pré-requisitos
-* [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado e rodando.
-* [Node.js](https://nodejs.org/) (v18 ou superior).
-* **Maven** e **JDK 17** instalados e configurados no PATH.
+* Docker Desktop instalado e rodando  
+* Node.js v18+  
+* Maven  
+* JDK 17  
 
 ### Passo 1: Executar o Backend (Docker)
 
-1. Abra o terminal na pasta raiz do backend: `/barbearia-microservices`.
-2. Compile o projeto e gere as imagens Docker automaticamente usando o Jib:
-   ```bash
-   mvn clean compile jib:dockerBuild
+1. Abra o terminal na pasta raiz do backend:
+
+```bash
+cd barbearia-microservices
+```
+
+2. Compile o projeto e gere as imagens Docker com Jib:
+
+```bash
+mvn clean compile jib:dockerBuild
+```
+
+3. Suba todos os serviços com Docker Compose:
+
+```bash
+docker compose up -d
+```
+
+4. Acesse os serviços:
+- **Eureka:** http://localhost:8761  
+- **API Gateway:** http://localhost:8080  
+
+---
+
+## 📦 Passo 2: Executar o Frontend (Next.js)
+
+1. Entre na pasta do frontend:
+
+```bash
+cd barbearia-frontend
+```
+
+2. Instale as dependências:
+
+```bash
+npm install
+```
+
+3. Rode o projeto:
+
+```bash
+npm run dev
+```
+
+O frontend ficará disponível em:
+
+👉 **http://localhost:3000**
+
+---
+
+## 🧪 Testes
+
+Cada microsserviço possui testes unitários e de integração utilizando:
+- JUnit 5  
+- Mockito  
+- Testcontainers (para MongoDB em ambiente isolado)
+
+---
+
+## 🐳 Estrutura Docker Compose
+
+Os serviços sobem com:
+- Rede interna Docker
+- Environment vars para comunicação entre microsserviços
+- MongoDB individual por serviço
+
+---
+
+## 📌 Observações Importantes
+
+- A aplicação utiliza **JWT assinado** com chave secreta compartilhada entre os serviços.  
+- Os microsserviços são totalmente independentes e podem ser escalados separadamente.  
+- Todas as imagens são geradas usando **Google Jib**, sem precisar de Dockerfile.
+
