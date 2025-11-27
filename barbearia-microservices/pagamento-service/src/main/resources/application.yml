@@ -1,0 +1,20 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: pagamento-service
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+app:
+  jwt:
+    secret: k@8b$Z!E(H+MbQeThVmYq3t6w9z$C&F)J@NcRfUjWnZr4u7x!A%D*G-KaPdSgVkY
+
+stripe:
+  secret-key: sk_test_51SS6HXArY2pGf1rxZXCc7e8HExbMRwfGFUYON3tH7iG3cF4LUzXFKyyKyjJvsJdrTk49Ft2ZBEDJZ8RN7lZ1aEpt00ELaeLgMR
+  success-url: http://localhost:3000/bookings?success=true
+  cancel-url: http://localhost:3000/bookings?canceled=true

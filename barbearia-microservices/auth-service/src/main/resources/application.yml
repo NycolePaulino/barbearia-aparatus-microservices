@@ -1,0 +1,35 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: auth-service
+
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/barbearia_auth
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 12206979013-qo9dd1cep983lqv5afrnv976glleovgs.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+              - openid
+              - email
+              - profile
+            redirect-uri: "http://localhost:8080/login/oauth2/code/google"
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+app:
+  jwt:
+    secret: k@8b$Z!E(H+MbQeThVmYq3t6w9z$C&F)J@NcRfUjWnZr4u7x!A%D*G-KaPdSgVkY
+    expiration-ms: 604800000
