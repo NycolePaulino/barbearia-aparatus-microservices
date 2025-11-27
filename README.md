@@ -21,7 +21,7 @@ O objetivo foi desacoplar as regras de negócio em serviços independentes, perm
 | :--- | :--- | :--- |
 | **Nycole Paulino Santos** | 2023.1.08.044 | Bacharel em Ciência da Computação |
 | **Maria Luiza Alves Belarmino** | 2023.1.08.015 | Bacharel em Ciência da Computação |
-| **Pedro Almeida** | 2022.1.08.045 | Bacharel em Ciência da Computação |
+| **Pedro Henrique de Almeida** | 2022.1.08.045 | Bacharel em Ciência da Computação |
 
 ---
 
