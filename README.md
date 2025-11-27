@@ -15,11 +15,15 @@ O objetivo foi desacoplar as regras de negócio em serviços independentes, perm
 
 ---
 
-## 👨‍💻 Dados do Desenvolvedor
+## 👨‍💻 Dados dos Desenvolvedores
 
 | Nome | RA / Matrícula | Curso |
 | :--- | :--- | :--- |
-| **[SEU NOME AQUI]** | **[SEU RA AQUI]** | **[SEU CURSO AQUI]** |
+| **Nycole Paulino Santos** | **2023.1.08.044** | **Bacharel em Ciencia da Computação** |
+| **Maria Luiza Alves Berlarmino** | **2023.1.08.015** | **Bacharel em Ciencia da Computação** |
+| **Maria Luiza Alves Berlarmino** | **2023.1.08.015** | **Bacharel em Ciencia da Computação** |
+| **Pedro Almeida** | **2023.1.08.015** | **Bacharel em Ciencia da Computação** |
+
 
 ---
 
